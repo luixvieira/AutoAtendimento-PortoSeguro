@@ -94,7 +94,8 @@ def visualizar_prontuario():
         print(i)
         
 def visualizar_pre_diagnostico():
-    placa_consulta = (input("Digite a placa do carro que deseja visualizar o pré prontuario"))
+    print(f"Os problemas registrados foram:{problemas_registrados}")
+    print(f"O possivel diagnostico foi: {diagnostico_realizado}")
 
 
 def exibir_menu_segurado():
@@ -102,7 +103,8 @@ def exibir_menu_segurado():
     print("1. Registrar problemas do carro")
     print("2. Realizar diagnóstico")
     print("3. Sair")
-    opcao = input("\nDigite o número da opção desejada: ")
+    #opcao = input("\nDigite o número da opção desejada: ")
+    
     
 def registrar_problemas():
     problemas = input("\n Digite os problemas do carro (separados por vírgula): \n")
@@ -112,32 +114,34 @@ def registrar_problemas():
 
 def realizar_diagnostico(problemas):
     if "motor" in problemas:
+        diagnostico_realizado.append("Possivel motor com defeito")
         print("\nPossível problema: motor com defeito\n")
     elif "pneu" in problemas:
+        diagnostico_realizado.append("Possível problema: pneu danificado")
         print("Possível problema: pneu danificado\n")
     else:
+        diagnostico_realizado.append("Não foi possivel realizar um diagnostico")
         print("Não foi possível determinar o problema com base nos dados fornecidos. Entre em nosso site para marcar uma avaliação presencial\n")
 
 problemas_registrados = []
-
+diagnostico_realizado = []
 def main():
     while True:
         exibir_menu()
         opcao = input("Digite o número da opção desejada: ")
-
         if opcao == "1":
             problemas_registrados.extend(registrar_problemas())
             print("Problemas registrados:", problemas_registrados)
         elif opcao == "2":
             if not problemas_registrados:
-                print("É necessário registrar os problemas antes de realizar o diagnóstico.\n")
-            else:
-                realizar_diagnostico(problemas_registrados)
+               print("É necessário registrar os problemas antes de realizar o diagnóstico.\n")
+            else: realizar_diagnostico(problemas_registrados)
         elif opcao == "3":
             print("Encerrando o programa. Obrigado!")
             break
         else:
             print("Opção inválida. Tente novamente.\n")
+
 
 if __name__ == "__main__":
     main()
