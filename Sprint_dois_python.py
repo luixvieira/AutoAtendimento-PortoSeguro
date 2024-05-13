@@ -1,6 +1,6 @@
-from random import *
-from datetime import date
-prontuarios = ["b"]
+from random import * #import para para gerar um numero de ID aleatorio
+from datetime import date #Import para mostrar a data atual da reforma
+prontuarios = [""] 
 
 def linhas_titulo(txt):
     print("=" * 60) #obrigado por me ensinar isso professor guanabara
@@ -92,6 +92,9 @@ def adicionar_reforma():
 def visualizar_prontuario():
     for i in prontuarios:
         print(i)
+        
+def visualizar_pre_diagnostico():
+    placa_consulta = (input("Digite a placa do carro que deseja visualizar o pré prontuario"))
 
 
 def exibir_menu_segurado():
