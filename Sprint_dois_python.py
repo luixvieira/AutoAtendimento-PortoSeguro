@@ -90,8 +90,8 @@ def adicionar_reforma():
         exibir_menu_mecanico()
         
 def visualizar_prontuario():
-    for i in prontuarios:
-        print(i)
+    print (problemas_registrados)
+    print(diagnostico_realizado)
         
 def visualizar_pre_diagnostico():
     print(f"Os problemas registrados foram:{problemas_registrados}")
