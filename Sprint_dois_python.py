@@ -1,6 +1,10 @@
 from random import * #import para para gerar um numero de ID aleatorio
 from datetime import date #Import para mostrar a data atual da reforma
-prontuarios = [""] 
+problemas_registrados = []
+diagnostico_realizado = []
+prontuarios = []
+prontuarios.extend(problemas_registrados)
+prontuarios.extend(diagnostico_realizado)
 
 def linhas_titulo(txt):
     print("=" * 60) #obrigado por me ensinar isso professor guanabara
@@ -80,18 +84,35 @@ def adicionar_reforma():
     
     if confirmar == "S":
         print(f"Reforma cadastrada com sucesso! ID: {id_reforma}")
+        
+        # Adicionando a reforma como um dicionário em prontuarios
+        prontuarios.append({
+            "placa": placa,
+            "id_carro": id_carro,
+            "id_reforma": id_reforma,
+            "descricao": descricao,
+            "data": date.today()
+        })
         exibir_menu()
-        #Atualizando a lista de prontuarios
-        global prontuarios
-        prontuarios.extend ([f"Placa do Carro: {placa} \n Id do carro: {id_carro} \n Id da reforma: {id_reforma} \n Descrição: {descricao} data: {date.today()} "])
-
     else:
         print("Cadastro da reforma cancelado.")
         exibir_menu_mecanico()
+
+        
         
 def visualizar_prontuario():
-    print (problemas_registrados)
-    print(diagnostico_realizado)
+    if not prontuarios:
+        print("Nenhum prontuário encontrado.")
+        return
+
+    for reforma in prontuarios:  # Indentação corrigida aqui
+        print("=" * 30)
+        print(f"Placa do Carro: {reforma['placa']}")
+        print(f"ID do Carro: {reforma['id_carro']}")
+        print(f"ID da Reforma: {reforma['id_reforma']}")
+        print(f"Descrição: {reforma['descricao']}")
+        print(f"Data: {reforma['data']}")
+        print("=" * 30)
         
 def visualizar_pre_diagnostico():
     print(f"Os problemas registrados foram:{problemas_registrados}")
@@ -123,8 +144,8 @@ def realizar_diagnostico(problemas):
         diagnostico_realizado.append("Não foi possivel realizar um diagnostico")
         print("Não foi possível determinar o problema com base nos dados fornecidos. Entre em nosso site para marcar uma avaliação presencial\n")
 
-problemas_registrados = []
-diagnostico_realizado = []
+#problemas_registrados = []
+#diagnostico_realizado = []
 def main():
     while True:
         exibir_menu()
